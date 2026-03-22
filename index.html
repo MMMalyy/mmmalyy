@@ -1,48 +1,3773 @@
-<!-- Swiper Slider -->
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <!-- Replace with your portfolio items -->
-        <div class="swiper-slide">Portfolio Item 1</div>
-        <div class="swiper-slide">Portfolio Item 2</div>
-        <div class="swiper-slide">Portfolio Item 3</div>
+<!DOCTYPE html>
+<html lang="uk" itemscope itemtype="https://schema.org/Person">
+  <head>
+    <!-- =====================================================
+       META & SEO
+  ===================================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mmmalyy — Музичний Трек + Кліп Під Ключ | Київ</title>
+    <meta
+      name="description"
+      content="Mmmalyy — створюю трек і кліп під ключ для брендів та e-commerce.
+    Авторська музика + кінематографічне відео у форматі TikTok / Reels. Київ."
+    />
+    <meta
+      name="keywords"
+      content="музичний рекламний кліп, трек і кліп, music video ads, tiktok відео,
+    promo video creator, відео під ключ, brand videos, mmmalyy, Київ"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://mmmalyy.github.io/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mmmalyy — Трек + Кліп Під Ключ" />
+    <meta
+      property="og:description"
+      content="Авторський трек і кліп у форматі TikTok для твого бренду."
+    />
+    <meta property="og:url" content="https://mmmalyy.github.io/" />
+    <meta
+      property="og:image"
+      content="https://mmmalyy.github.io/og-image.jpg"
+    />
+    <meta property="og:locale" content="uk_UA" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mmmalyy",
+        "jobTitle": "Music Video Creator",
+        "url": "https://mmmalyy.github.io",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Київ",
+          "addressCountry": "UA"
+        },
+        "sameAs": ["https://www.instagram.com/mmmalyy", "https://t.me/mmmalyy"]
+      }
+    </script>
+
+    <!-- =====================================================
+       FONTS
+  ===================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =====================================================
+       EXTERNAL LIBS
+  ===================================================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- =====================================================
+       CSS
+  ===================================================== -->
+    <style>
+      /* ─────────────────────────────────────────
+       1. DESIGN TOKENS
+    ───────────────────────────────────────── */
+      :root {
+        --black: #000000;
+        --dark: #050508;
+        --dark2: #0a0a10;
+        --cyan: #00d4ff;
+        --cyan-g: rgba(0, 212, 255, 0.18);
+        --white: #f0f0f0;
+        --gray: #888899;
+
+        --font-display: "Bebas Neue", sans-serif;
+        --font-body: "DM Sans", sans-serif;
+        --font-mono: "Space Mono", monospace;
+
+        --section-px: 1.5rem;
+        --section-py: 5rem;
+      }
+      @media (min-width: 768px) {
+        :root {
+          --section-px: 4rem;
+          --section-py: 6rem;
+        }
+      }
+
+      /* ─────────────────────────────────────────
+       2. RESET
+    ───────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: var(--font-body);
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      ::selection {
+        background: var(--cyan);
+        color: var(--black);
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--dark);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--cyan);
+        border-radius: 2px;
+      }
+
+      /* ─────────────────────────────────────────
+       3. GRAIN OVERLAY
+    ───────────────────────────────────────── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0.28;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+      }
+
+      /* ─────────────────────────────────────────
+       4. CUSTOM CURSOR  ← desktop only, never on touch
+    ───────────────────────────────────────── */
+      .cur-dot,
+      .cur-ring {
+        display: none; /* hidden by default, shown via JS only on real pointer */
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+      .cur-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--cyan);
+        border-radius: 50%;
+        transition: width 0.3s, height 0.3s;
+      }
+      .cur-ring {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--cyan);
+        border-radius: 50%;
+        opacity: 0.5;
+        z-index: 9998;
+        transition: width 0.3s, height 0.3s;
+      }
+
+      /* hover state */
+      body.cur-hover .cur-dot {
+        width: 5px;
+        height: 5px;
+      }
+      body.cur-hover .cur-ring {
+        width: 58px;
+        height: 58px;
+        opacity: 1;
+      }
+
+      /* ─────────────────────────────────────────
+       5. PAGE LOADER
+    ───────────────────────────────────────── */
+      #loader {
+        position: fixed;
+        inset: 0;
+        background: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      .loader-char {
+        display: inline-block;
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 10vw, 7rem);
+        letter-spacing: 0.2em;
+        transform: translateY(110%);
+        opacity: 0;
+        transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1),
+          opacity 0.4s;
+      }
+      #loader.hide {
+        animation: loaderFade 0.5s 0.1s ease forwards;
+      }
+      @keyframes loaderFade {
+        to {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+      }
+
+      /* ─────────────────────────────────────────
+       6. NAVIGATION
+    ───────────────────────────────────────── */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.4rem var(--section-px);
+        transition: background 0.35s, padding 0.35s, border-color 0.35s;
+      }
+      .nav.scrolled {
+        background: rgba(0, 0, 0, 0.88);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      /* Logo */
+      .nav__logo {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        letter-spacing: 0.15em;
+        color: var(--white);
+      }
+      .nav__logo span {
+        color: var(--cyan);
+      }
+
+      /* Desktop links */
+      .nav__links {
+        display: none;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      @media (min-width: 1024px) {
+        .nav__links {
+          display: flex;
+        }
+      }
+      .nav__links a {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gray);
+        position: relative;
+        transition: color 0.3s;
+      }
+      .nav__links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--cyan);
+        transition: width 0.3s;
+      }
+      .nav__links a:hover {
+        color: var(--cyan);
+      }
+      .nav__links a:hover::after {
+        width: 100%;
+      }
+
+      /* CTA */
+      .nav__cta {
+        display: none;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--black);
+        background: var(--cyan);
+        padding: 0.65rem 1.4rem;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+      .nav__cta:hover {
+        background: #fff;
+        box-shadow: 0 0 28px var(--cyan-g);
+      }
+      @media (min-width: 1024px) {
+        .nav__cta {
+          display: inline-flex;
+          align-items: center;
+        }
+      }
+
+      /* Hamburger */
+      .nav__burger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .nav__burger span {
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--white);
+        transition: all 0.3s;
+      }
+      .nav__burger.open span:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 4px);
+      }
+      .nav__burger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav__burger.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px);
+      }
+      @media (min-width: 1024px) {
+        .nav__burger {
+          display: none;
+        }
+      }
+
+      /* Mobile menu */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.97);
+        z-index: 850;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.2rem;
+        transition: right 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+      }
+      .mobile-menu.open {
+        right: 0;
+      }
+      .mobile-menu a {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        letter-spacing: 0.05em;
+        color: var(--white);
+        transition: color 0.3s;
+      }
+      .mobile-menu a:hover {
+        color: var(--cyan);
+      }
+      .mobile-menu__cta {
+        font-family: var(--font-mono) !important;
+        font-size: 0.68rem !important;
+        letter-spacing: 0.18em !important;
+        text-transform: uppercase;
+        color: var(--black) !important;
+        background: var(--cyan);
+        padding: 0.9rem 2.2rem;
+      }
+
+      /* ─────────────────────────────────────────
+       7. SECTION LAYOUT HELPERS
+    ───────────────────────────────────────── */
+      .section {
+        padding: var(--section-py) var(--section-px);
+        position: relative;
+      }
+
+      .section__tag {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .section__tag::before {
+        content: "";
+        width: 30px;
+        height: 1px;
+        background: var(--cyan);
+        flex-shrink: 0;
+      }
+
+      .section__title {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 7vw, 5.5rem);
+        line-height: 0.93;
+        margin-bottom: 1rem;
+      }
+
+      .section__line {
+        width: 56px;
+        height: 1px;
+        background: var(--cyan);
+        margin-bottom: 3rem;
+      }
+
+      /* Colour helpers */
+      .text-cyan {
+        color: var(--cyan);
+      }
+      .text-outline {
+        -webkit-text-stroke: 1px rgba(240, 240, 240, 0.25);
+        color: transparent;
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(36px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Buttons */
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--black);
+        background: var(--cyan);
+        padding: 1rem 1.8rem;
+        position: relative;
+        overflow: hidden;
+        transition: box-shadow 0.3s;
+      }
+      .btn-primary::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(-100%);
+        transition: transform 0.4s;
+      }
+      .btn-primary:hover::after {
+        transform: translateX(0);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 0 38px var(--cyan-g);
+      }
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--white);
+        border: 1px solid rgba(240, 240, 240, 0.18);
+        padding: 1rem 1.8rem;
+        transition: border-color 0.3s, color 0.3s;
+      }
+      .btn-ghost:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+      }
+
+      /* ─────────────────────────────────────────
+       8. HERO
+    ───────────────────────────────────────── */
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 4.5rem;
+        padding-top: 7rem;
+        overflow: hidden;
+      }
+
+      /* Animated grid background */
+      .hero__grid {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background-image: linear-gradient(
+            rgba(0, 212, 255, 0.028) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.028) 1px, transparent 1px);
+        background-size: 72px 72px;
+        animation: gridScroll 22s linear infinite;
+      }
+      @keyframes gridScroll {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(72px);
+        }
+      }
+
+      /* Ambient glow */
+      .hero__glow {
+        position: absolute;
+        top: 10%;
+        right: 5%;
+        z-index: 1;
+        width: min(540px, 80vw);
+        height: min(540px, 80vw);
+        background: radial-gradient(
+          ellipse,
+          rgba(0, 212, 255, 0.07) 0%,
+          transparent 70%
+        );
+        animation: glowPulse 6s ease-in-out infinite;
+        pointer-events: none;
+      }
+      @keyframes glowPulse {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+      }
+
+      .hero__content {
+        position: relative;
+        z-index: 3;
+        padding: 0 var(--section-px);
+      }
+
+      .hero__eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.3em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        margin-bottom: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        opacity: 0; /* animated in by GSAP */
+      }
+      .hero__eyebrow::before {
+        content: "";
+        width: 36px;
+        height: 1px;
+        background: var(--cyan);
+      }
+
+      .hero__title {
+        font-family: var(--font-display);
+        font-size: clamp(3.2rem, 13vw, 11rem);
+        line-height: 0.88;
+      }
+      .hero__title .line {
+        display: block;
+        opacity: 0;
+      } /* GSAP targets these */
+
+      .hero__sub {
+        font-size: 0.92rem;
+        color: var(--gray);
+        max-width: 420px;
+        line-height: 1.75;
+        margin: 1.5rem 0 2.2rem;
+        opacity: 0;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        opacity: 0;
+      }
+
+      /* Scroll indicator */
+      .hero__scroll {
+        position: absolute;
+        bottom: 2rem;
+        right: var(--section-px);
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .hero__scroll span {
+        font-family: var(--font-mono);
+        font-size: 0.52rem;
+        letter-spacing: 0.3em;
+        color: var(--gray);
+        text-transform: uppercase;
+        writing-mode: vertical-rl;
+      }
+      .hero__scroll-line {
+        width: 1px;
+        height: 56px;
+        background: linear-gradient(to bottom, var(--cyan), transparent);
+        animation: scrollPulse 2s ease-in-out infinite;
+      }
+      @keyframes scrollPulse {
+        0%,
+        100% {
+          transform: scaleY(0);
+          transform-origin: top;
+        }
+        50% {
+          transform: scaleY(1);
+        }
+      }
+
+      /* ─────────────────────────────────────────
+       9. STATS BAR
+    ───────────────────────────────────────── */
+      .stats {
+        padding: 3.5rem var(--section-px);
+        background: var(--dark2);
+        border-top: 1px solid rgba(0, 212, 255, 0.1);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+      }
+      .stats__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+      @media (min-width: 768px) {
+        .stats__grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .stats__item {
+        text-align: center;
+      }
+      .stats__num {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        color: var(--cyan);
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+      .stats__label {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        color: var(--gray);
+        text-transform: uppercase;
+      }
+
+      /* ─────────────────────────────────────────
+       10. PORTFOLIO — 9:16 TikTok Grid
+    ───────────────────────────────────────── */
+      .portfolio {
+        background: var(--dark);
+      }
+
+      .portfolio__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 0.5rem;
+      }
+      .portfolio__badge-label {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gray);
+      }
+      .portfolio__badge-tag {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        padding: 0.25rem 0.6rem;
+      }
+
+      .portfolio__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3px;
+        margin-top: 1.8rem;
+      }
+      @media (min-width: 640px) {
+        .portfolio__grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* ─── Video card (9:16) ─── */
+      .video-card {
+        position: relative;
+        aspect-ratio: 9 / 16;
+        overflow: hidden;
+        cursor: pointer;
+        background: #0a0a14;
+      }
+
+      /* Thumbnail image */
+      .video-card__thumb {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .video-card:hover .video-card__thumb {
+        transform: scale(1.07);
+      }
+
+      /* Scanline texture overlay */
+      .video-card__scanlines {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(0, 212, 255, 0.025) 3px,
+          rgba(0, 212, 255, 0.025) 4px
+        );
+      }
+
+      /* Shimmer on hover */
+      .video-card__shimmer {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        pointer-events: none;
+        background: linear-gradient(
+          135deg,
+          transparent 30%,
+          rgba(0, 212, 255, 0.05) 50%,
+          transparent 70%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+      }
+      .video-card:hover .video-card__shimmer {
+        transform: translateX(100%);
+      }
+
+      /* Index number */
+      .video-card__num {
+        position: absolute;
+        top: 0.7rem;
+        left: 0.7rem;
+        z-index: 5;
+        font-family: var(--font-mono);
+        font-size: 0.5rem;
+        letter-spacing: 0.28em;
+        color: rgba(0, 212, 255, 0.45);
+      }
+
+      /* Play button */
+      .video-card__play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        width: 56px;
+        height: 56px;
+        border: 1px solid var(--cyan);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        z-index: 5;
+        transition: opacity 0.4s, transform 0.4s;
+      }
+      .video-card__play svg {
+        fill: var(--cyan);
+        width: 18px;
+        margin-left: 3px;
+      }
+      .video-card:hover .video-card__play {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* Info overlay */
+      .video-card__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.9) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1rem;
+      }
+      .video-card:hover .video-card__overlay {
+        opacity: 1;
+      }
+      .video-card__title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.2rem;
+      }
+      .video-card__genre {
+        font-family: var(--font-mono);
+        font-size: 0.52rem;
+        letter-spacing: 0.18em;
+        color: var(--cyan);
+        text-transform: uppercase;
+      }
+
+      /* ─────────────────────────────────────────
+       11. LIGHTBOX — 9:16 format
+    ───────────────────────────────────────── */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 8000;
+        background: rgba(0, 0, 0, 0.97);
+        backdrop-filter: blur(14px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+      .lightbox.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .lightbox__inner {
+        position: relative;
+        width: min(340px, 90vw);
+        transform: scale(0.9);
+        transition: transform 0.4s;
+      }
+      .lightbox.open .lightbox__inner {
+        transform: scale(1);
+      }
+
+      .lightbox__frame {
+        aspect-ratio: 9 / 16;
+        background: #000;
+        border: 1px solid rgba(0, 212, 255, 0.25);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox__frame iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .lightbox__close {
+        position: absolute;
+        top: -2.6rem;
+        right: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gray);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s;
+      }
+      .lightbox__close:hover {
+        color: var(--cyan);
+      }
+
+      .lightbox__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.75rem;
+      }
+      .lightbox__meta-title {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+        display: block;
+      }
+      .lightbox__meta-genre {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.15em;
+        color: var(--cyan);
+        text-transform: uppercase;
+      }
+      .lightbox__meta-year {
+        font-family: var(--font-mono);
+        font-size: 0.55rem;
+        letter-spacing: 0.2em;
+        color: var(--gray);
+      }
+
+      /* ─────────────────────────────────────────
+       12. FEATURED SWIPER SLIDER
+    ───────────────────────────────────────── */
+      .featured {
+        background: var(--black);
+        overflow: hidden;
+      }
+
+      .featured-slide {
+        position: relative;
+        aspect-ratio: 16 / 6;
+        overflow: hidden;
+      }
+      @media (max-width: 640px) {
+        .featured-slide {
+          aspect-ratio: 4/3;
+        }
+      }
+
+      .featured-slide__bg {
+        position: absolute;
+        inset: 0;
+      }
+      .featured-slide__grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.22;
+        background-image: linear-gradient(
+            rgba(0, 212, 255, 0.025) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.025) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      .featured-slide__num {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        font-family: var(--font-display);
+        line-height: 1;
+        font-size: clamp(5rem, 16vw, 10rem);
+        color: rgba(0, 212, 255, 0.05);
+        pointer-events: none;
+        user-select: none;
+      }
+      .featured-slide__content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        padding: 1.5rem;
+      }
+      @media (min-width: 768px) {
+        .featured-slide__content {
+          padding: 3rem 4rem;
+        }
+      }
+
+      .featured-slide__tag {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.28em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
+      }
+      .featured-slide__title {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 5vw, 4rem);
+        line-height: 1;
+        white-space: pre-line;
+        margin-bottom: 0.8rem;
+      }
+      .featured-slide__desc {
+        font-size: 0.83rem;
+        color: var(--gray);
+        max-width: 480px;
+        line-height: 1.65;
+      }
+
+      /* Slider controls */
+      .featured__controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding: 0 var(--section-px);
+      }
+      .slider-btn {
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        background: transparent;
+        cursor: pointer;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.3s, background 0.3s;
+        flex-shrink: 0;
+      }
+      .slider-btn:hover {
+        border-color: var(--cyan);
+        background: rgba(0, 212, 255, 0.1);
+      }
+
+      .slider-progress {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .slider-progress__bar {
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+      }
+      .slider-progress__fill {
+        height: 100%;
+        background: var(--cyan);
+        transition: width 0.4s;
+      }
+      .slider-progress__count {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        color: var(--gray);
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+      }
+
+      /* ─────────────────────────────────────────
+       13. ABOUT
+    ───────────────────────────────────────── */
+      .about {
+        background: var(--dark2);
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+      @media (min-width: 1024px) {
+        .about {
+          grid-template-columns: 1fr 1fr;
+          gap: 6rem;
+          align-items: center;
+        }
+      }
+
+      .about__photo-wrap {
+        position: relative;
+      }
+      .about__photo {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        aspect-ratio: 3/4;
+      }
+      .about__photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(20%) contrast(1.05);
+        transition: transform 0.7s ease;
+      }
+      .about__photo:hover img {
+        transform: scale(1.03);
+      }
+
+      /* Corner accents */
+      .about__photo::before,
+      .about__photo::after {
+        content: "";
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        z-index: 2;
+      }
+      .about__photo::before {
+        top: 0;
+        left: 0;
+        border-top: 1px solid rgba(0, 212, 255, 0.6);
+        border-left: 1px solid rgba(0, 212, 255, 0.6);
+      }
+      .about__photo::after {
+        bottom: 0;
+        right: 0;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.6);
+        border-right: 1px solid rgba(0, 212, 255, 0.6);
+      }
+
+      /* Offset ghost frame */
+      .about__photo-frame {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        right: -14px;
+        bottom: -14px;
+        border: 1px solid rgba(0, 212, 255, 0.07);
+        z-index: -1;
+      }
+
+      .about__badge {
+        position: absolute;
+        bottom: -1.3rem;
+        right: 0;
+        background: var(--cyan);
+        color: var(--black);
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        padding: 0.85rem 1.3rem;
+        z-index: 2;
+      }
+      @media (min-width: 768px) {
+        .about__badge {
+          right: -1.3rem;
+        }
+      }
+
+      .about__text {
+        margin-top: 3rem;
+      }
+      @media (min-width: 1024px) {
+        .about__text {
+          margin-top: 0;
+        }
+      }
+
+      .about__body {
+        color: var(--gray);
+        font-size: 0.9rem;
+        line-height: 1.85;
+        margin-bottom: 1.2rem;
+      }
+      .about__body strong {
+        color: var(--white);
+        font-weight: 400;
+      }
+
+      .about__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 2rem;
+      }
+      .about__tag {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        border: 1px solid rgba(0, 212, 255, 0.28);
+        padding: 0.35rem 0.7rem;
+        transition: background 0.25s, border-color 0.25s;
+      }
+      .about__tag:hover {
+        background: rgba(0, 212, 255, 0.1);
+        border-color: var(--cyan);
+      }
+
+      /* ─────────────────────────────────────────
+       14. SERVICES
+    ───────────────────────────────────────── */
+      .services {
+        background: var(--black);
+      }
+
+      .services__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1px;
+        background: rgba(0, 212, 255, 0.1);
+        border: 1px solid rgba(0, 212, 255, 0.1);
+      }
+      @media (min-width: 640px) {
+        .services__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .services__grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .service-card {
+        background: var(--dark);
+        padding: 2.2rem;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.35s;
+      }
+      .service-card:hover {
+        background: #0a0a18;
+      }
+      .service-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--cyan);
+        transition: width 0.5s;
+      }
+      .service-card:hover::after {
+        width: 100%;
+      }
+
+      .service-card__glow {
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          ellipse,
+          rgba(0, 212, 255, 0.045) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+        pointer-events: none;
+      }
+      .service-card:hover .service-card__glow {
+        opacity: 1;
+      }
+
+      .service-card__num {
+        font-family: var(--font-display);
+        font-size: 2.8rem;
+        color: rgba(0, 212, 255, 0.1);
+        line-height: 1;
+        margin-bottom: 0.8rem;
+        user-select: none;
+      }
+      .service-card__icon {
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.3rem;
+        transition: border-color 0.3s, background 0.3s;
+      }
+      .service-card:hover .service-card__icon {
+        border-color: var(--cyan);
+        background: rgba(0, 212, 255, 0.08);
+      }
+      .service-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.8rem;
+      }
+      .service-card p {
+        font-size: 0.83rem;
+        color: var(--gray);
+        line-height: 1.75;
+      }
+
+      /* ─────────────────────────────────────────
+       15. CLIENTS MARQUEE
+    ───────────────────────────────────────── */
+      .clients {
+        padding: 3.5rem 0;
+        background: var(--dark2);
+        border-top: 1px solid rgba(0, 212, 255, 0.1);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        overflow: hidden;
+      }
+      .clients__label {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.3em;
+        color: rgba(136, 136, 153, 0.45);
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .clients__track-wrap {
+        position: relative;
+      }
+      .clients__track-wrap::before,
+      .clients__track-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 80px;
+        z-index: 2;
+      }
+      .clients__track-wrap::before {
+        left: 0;
+        background: linear-gradient(to right, var(--dark2), transparent);
+      }
+      .clients__track-wrap::after {
+        right: 0;
+        background: linear-gradient(to left, var(--dark2), transparent);
+      }
+
+      .clients__track {
+        display: flex;
+        gap: 3.5rem;
+        align-items: center;
+        animation: marquee 22s linear infinite;
+        width: max-content;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .clients__logo {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 0.22em;
+        color: rgba(136, 136, 153, 0.3);
+        white-space: nowrap;
+        cursor: default;
+        transition: color 0.3s;
+      }
+      .clients__logo:hover {
+        color: var(--cyan);
+      }
+
+      /* ─────────────────────────────────────────
+       16. TESTIMONIALS
+    ───────────────────────────────────────── */
+      .testimonials {
+        background: var(--dark);
+      }
+
+      .testimonials__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1px;
+        background: rgba(0, 212, 255, 0.08);
+      }
+      @media (min-width: 768px) {
+        .testimonials__grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .testimonial-card {
+        background: var(--dark);
+        padding: 2rem;
+        transition: background 0.3s;
+      }
+      .testimonial-card:hover {
+        background: #0a0a15;
+      }
+
+      .testimonial-card__stars {
+        color: var(--cyan);
+        letter-spacing: 0.1em;
+        margin-bottom: 1.2rem;
+        font-size: 0.88rem;
+      }
+      .testimonial-card__text {
+        font-size: 0.86rem;
+        line-height: 1.85;
+        color: var(--gray);
+        margin-bottom: 1.8rem;
+        font-style: italic;
+      }
+      .testimonial-card__text::before {
+        content: '"';
+        color: var(--cyan);
+        font-size: 1.6rem;
+        line-height: 0;
+        vertical-align: -0.45em;
+      }
+      .testimonial-card__author {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+      .testimonial-card__avatar {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        color: var(--cyan);
+        background: rgba(0, 212, 255, 0.05);
+        flex-shrink: 0;
+      }
+      .testimonial-card__name {
+        display: block;
+        font-size: 0.84rem;
+        font-weight: 500;
+        margin-bottom: 0.15rem;
+      }
+      .testimonial-card__role {
+        font-family: var(--font-mono);
+        font-size: 0.57rem;
+        letter-spacing: 0.14em;
+        color: var(--cyan);
+        text-transform: uppercase;
+      }
+
+      /* ─────────────────────────────────────────
+       17. PROCESS
+    ───────────────────────────────────────── */
+      .process {
+        background: var(--black);
+      }
+
+      .process__step {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 1rem 1.5rem;
+        padding: 1.8rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+        overflow: hidden;
+        transition: padding-left 0.4s;
+      }
+      @media (min-width: 768px) {
+        .process__step {
+          grid-template-columns: 72px 1fr auto;
+          gap: 1.5rem 2rem;
+          padding: 2.2rem 0;
+        }
+      }
+      .process__step:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* Fill on hover */
+      .process__step::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0;
+        background: rgba(0, 212, 255, 0.03);
+        transition: width 0.5s;
+        z-index: 0;
+      }
+      .process__step:hover {
+        padding-left: 1.2rem;
+      }
+      .process__step:hover::after {
+        width: 100%;
+      }
+
+      .process__num {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 6vw, 3.2rem);
+        color: rgba(0, 212, 255, 0.14);
+        line-height: 1;
+        position: relative;
+        z-index: 1;
+        user-select: none;
+      }
+      .process__content {
+        position: relative;
+        z-index: 1;
+      }
+      .process__content h3 {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.6rem;
+      }
+      .process__content p {
+        font-size: 0.83rem;
+        color: var(--gray);
+        line-height: 1.75;
+      }
+
+      .process__duration {
+        font-family: var(--font-mono);
+        font-size: 0.54rem;
+        letter-spacing: 0.2em;
+        color: rgba(0, 212, 255, 0.45);
+        text-transform: uppercase;
+        white-space: nowrap;
+        position: relative;
+        z-index: 1;
+        align-self: start;
+        margin-top: 0.4rem;
+        grid-column: 2;
+      }
+      @media (min-width: 768px) {
+        .process__duration {
+          grid-column: auto;
+          margin-top: 0.3rem;
+        }
+      }
+
+      /* ─────────────────────────────────────────
+       18. FAQ
+    ───────────────────────────────────────── */
+      .faq {
+        background: var(--dark2);
+      }
+
+      .faq__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 768px) {
+        .faq__grid {
+          grid-template-columns: 1fr 1fr;
+          column-gap: 4rem;
+        }
+      }
+
+      .faq__item {
+        padding: 1.6rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        cursor: pointer;
+      }
+      .faq__question {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+      .faq__question h3 {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 0.03em;
+        transition: color 0.3s;
+      }
+      .faq__item:hover .faq__question h3,
+      .faq__item.open .faq__question h3 {
+        color: var(--cyan);
+      }
+
+      .faq__toggle {
+        width: 26px;
+        height: 26px;
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--cyan);
+        font-family: var(--font-mono);
+        font-size: 1.1rem;
+        line-height: 1;
+        transition: background 0.3s, border-color 0.3s, color 0.3s;
+      }
+      .faq__item.open .faq__toggle {
+        background: var(--cyan);
+        color: var(--black);
+        border-color: var(--cyan);
+      }
+
+      .faq__answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.35s;
+      }
+      .faq__item.open .faq__answer {
+        max-height: 300px;
+        padding-top: 0.9rem;
+      }
+      .faq__answer p {
+        font-size: 0.84rem;
+        color: var(--gray);
+        line-height: 1.82;
+      }
+
+      /* ─────────────────────────────────────────
+       19. CONTACT
+    ───────────────────────────────────────── */
+      .contact {
+        background: var(--black);
+      }
+
+      .contact__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+      @media (min-width: 1024px) {
+        .contact__grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 6rem;
+        }
+      }
+
+      .contact__intro {
+        color: var(--gray);
+        font-size: 0.9rem;
+        line-height: 1.8;
+        margin-bottom: 0;
+      }
+
+      .contact__links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: 2.5rem;
+      }
+
+      .contact__link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.9rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        transition: border-color 0.3s, background 0.3s;
+      }
+      .contact__link:hover {
+        border-color: var(--cyan);
+        background: rgba(0, 212, 255, 0.05);
+      }
+
+      .contact__link-icon {
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: border-color 0.3s, background 0.3s;
+      }
+      .contact__link:hover .contact__link-icon {
+        border-color: var(--cyan);
+        background: rgba(0, 212, 255, 0.1);
+      }
+      .contact__link strong {
+        display: block;
+        font-size: 0.84rem;
+        font-weight: 400;
+        margin-bottom: 0.15rem;
+      }
+      .contact__link span {
+        font-family: var(--font-mono);
+        font-size: 0.57rem;
+        letter-spacing: 0.14em;
+        color: var(--cyan);
+        text-transform: uppercase;
+      }
+
+      /* Form */
+      .contact__form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+      .form-group label {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.2em;
+        color: var(--gray);
+        text-transform: uppercase;
+      }
+      .form-input {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--white);
+        padding: 0.85rem 0.95rem;
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        outline: none;
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        transition: border-color 0.3s;
+      }
+      .form-input:focus {
+        border-color: var(--cyan);
+      }
+      .form-input option {
+        background: #0a0a14;
+      }
+      textarea.form-input {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem;
+      }
+
+      .form-submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        background: var(--cyan);
+        color: var(--black);
+        border: none;
+        cursor: pointer;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 1.05rem 1.8rem;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+      .form-submit::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.18);
+        transform: translateX(-100%);
+        transition: transform 0.4s;
+      }
+      .form-submit:hover::after {
+        transform: translateX(0);
+      }
+      .form-submit:hover {
+        box-shadow: 0 0 36px var(--cyan-g);
+        background: #fff;
+      }
+
+      .form-note {
+        font-family: var(--font-mono);
+        font-size: 0.56rem;
+        letter-spacing: 0.1em;
+        color: rgba(136, 136, 153, 0.5);
+        text-align: center;
+      }
+
+      /* ─────────────────────────────────────────
+       20. FOOTER
+    ───────────────────────────────────────── */
+      .footer {
+        background: var(--dark2);
+        border-top: 1px solid rgba(0, 212, 255, 0.1);
+        padding: 3.5rem var(--section-px) 2rem;
+      }
+
+      .footer__top {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin-bottom: 2.5rem;
+      }
+      @media (min-width: 768px) {
+        .footer__top {
+          grid-template-columns: 1fr auto;
+          gap: 4rem;
+        }
+      }
+
+      .footer__logo {
+        font-family: var(--font-display);
+        font-size: 1.9rem;
+        letter-spacing: 0.15em;
+        display: block;
+        margin-bottom: 1rem;
+        color: var(--white);
+      }
+      .footer__logo span {
+        color: var(--cyan);
+      }
+      .footer__desc {
+        font-size: 0.8rem;
+        color: var(--gray);
+        line-height: 1.72;
+        max-width: 280px;
+      }
+
+      .footer__cols {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+      }
+      .footer__col h4 {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.25em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        margin-bottom: 1.3rem;
+      }
+      .footer__col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+      .footer__col a {
+        font-size: 0.8rem;
+        color: var(--gray);
+        transition: color 0.25s;
+      }
+      .footer__col a:hover {
+        color: var(--white);
+      }
+
+      .footer__bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        padding-top: 1.8rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      @media (min-width: 640px) {
+        .footer__bottom {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+      .footer__copy {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.14em;
+        color: rgba(136, 136, 153, 0.45);
+        text-transform: uppercase;
+      }
+      .footer__socials {
+        display: flex;
+        gap: 0.8rem;
+      }
+      .footer__social {
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        color: var(--gray);
+        transition: border-color 0.3s, color 0.3s;
+      }
+      .footer__social:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- =====================================================
+       PAGE LOADER
+  ===================================================== -->
+    <div id="loader" aria-hidden="true">
+      <div>
+        <span class="loader-char">M</span>
+        <span class="loader-char">M</span>
+        <span class="loader-char">M</span>
+        <span class="loader-char">A</span>
+        <span class="loader-char">L</span>
+        <span class="loader-char">Y</span>
+        <span class="loader-char">Y</span>
+      </div>
     </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-</div>
 
-<!-- Add Swiper JS and CSS -->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-    var mySwiper = new Swiper('.swiper-container', {
-        // Optional parameters
-        loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-</script>
+    <!-- =====================================================
+       CURSOR  (shown only on non-touch devices via JS)
+  ===================================================== -->
+    <div class="cur-dot" id="curDot" aria-hidden="true"></div>
+    <div class="cur-ring" id="curRing" aria-hidden="true"></div>
 
-<!-- CSS for cursor only on hover capable devices -->
-<style>
-    @media (hover: hover) {
-        .custom-cursor {
-            cursor: url('path/to/custom-cursor.cur'), auto;
+    <!-- =====================================================
+       MOBILE MENU
+  ===================================================== -->
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Навігація"
+    >
+      <a href="#portfolio" onclick="closeMobileMenu()">Портфоліо</a>
+      <a href="#services" onclick="closeMobileMenu()">Послуги</a>
+      <a href="#about" onclick="closeMobileMenu()">Про мене</a>
+      <a href="#process" onclick="closeMobileMenu()">Процес</a>
+      <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+      <a href="#contact" onclick="closeMobileMenu()" class="mobile-menu__cta"
+        >Замовити кліп</a
+      >
+    </div>
+
+    <!-- =====================================================
+       NAVIGATION
+  ===================================================== -->
+    <nav
+      class="nav"
+      id="mainNav"
+      role="navigation"
+      aria-label="Головна навігація"
+    >
+      <a href="#hero" class="nav__logo" aria-label="Mmmalyy — на початок">
+        Mmmal<span>yy</span>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#portfolio">Портфоліо</a></li>
+        <li><a href="#services">Послуги</a></li>
+        <li><a href="#about">Про мене</a></li>
+        <li><a href="#process">Процес</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <a href="#contact" class="nav__cta">Замовити кліп</a>
+
+      <button
+        class="nav__burger"
+        id="burgerBtn"
+        aria-label="Відкрити меню"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <main id="main">
+      <!-- ===================================================
+         HERO
+    =================================================== -->
+      <section class="hero section" id="hero" aria-label="Головний банер">
+        <!-- Animated background layers -->
+        <div class="hero__grid" aria-hidden="true"></div>
+        <div class="hero__glow" aria-hidden="true"></div>
+
+        <!-- Content -->
+        <div class="hero__content">
+          <div class="hero__eyebrow" id="heroEyebrow">
+            Трек + Кліп · TikTok Format · Київ
+          </div>
+
+          <h1 class="hero__title">
+            <span class="line text-cyan" id="heroLine1">ТРЕК</span>
+            <span class="line" id="heroLine2">І КЛІП</span>
+            <span class="line text-outline" id="heroLine3">ПІД КЛЮЧ</span>
+          </h1>
+
+          <p class="hero__sub" id="heroSub">
+            Пишу авторський трек і знімаю кліп у форматі TikTok / Reels
+            спеціально під твій бренд. Музика під смак твоєї аудиторії. Жодних
+            аналогів на ринку.
+          </p>
+
+          <div class="hero__actions" id="heroActions">
+            <a href="#portfolio" class="btn-primary">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M4 2L11 6.5L4 11V2Z" />
+              </svg>
+              Дивитись роботи
+            </a>
+            <a href="#contact" class="btn-ghost">Замовити кліп →</a>
+          </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero__scroll" aria-hidden="true">
+          <div class="hero__scroll-line"></div>
+          <span>Scroll</span>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         STATS
+    =================================================== -->
+      <div class="stats" aria-label="Статистика">
+        <div class="stats__grid">
+          <div class="stats__item reveal">
+            <div class="stats__num">50+</div>
+            <div class="stats__label">Треків і Кліпів</div>
+          </div>
+
+          <div class="stats__item reveal">
+            <div class="stats__num">∞</div>
+            <div class="stats__label">Конкурентів</div>
+          </div>
+
+          <div class="stats__item reveal">
+            <div class="stats__num">100%</div>
+            <div class="stats__label">Авторська Музика</div>
+          </div>
+
+          <div class="stats__item reveal">
+            <div class="stats__num">14 днів</div>
+            <div class="stats__label">Від Брифу до Кліпу</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================
+         PORTFOLIO — 9:16 TIKTOK GRID
+         ─────────────────────────────────────────────────
+         Щоб додати своє відео:
+         1. Знайди YouTube ID (частина після ?v= або /shorts/)
+         2. Заміни data-vid="XXXX" на реальний ID
+         3. Постав своє фото замість thumbnail через img src=""
+    =================================================== -->
+      <section
+        class="portfolio section"
+        id="portfolio"
+        aria-labelledby="portfolioHeading"
+      >
+        <div class="reveal">
+          <div class="section__tag">Портфоліо</div>
+          <h2 class="section__title" id="portfolioHeading">
+            МОЇ <span class="text-cyan">РОБОТИ</span>
+          </h2>
+          <div class="section__line"></div>
+          <div class="portfolio__badge">
+            <span class="portfolio__badge-label">Формат</span>
+            <span class="portfolio__badge-tag">9:16 · TikTok / Reels</span>
+          </div>
+        </div>
+
+        <div class="portfolio__grid">
+          <!--
+          ═══ ВІДЕО КАРТОЧКА ════════════════════════════════
+          data-vid   = YouTube ID (після ?v= або /shorts/)
+          data-title = назва проєкту
+          data-genre = жанр
+          data-year  = рік
+          img src    = YouTube thumbnail або своє фото
+          ═══════════════════════════════════════════════════
+        -->
+
+          <!-- 1 — Cinematic music video (public YouTube) -->
+          <div
+            class="video-card reveal"
+            data-vid="FzABPOqGEAQ"
+            data-title="Cinematic Mood Reel"
+            data-genre="Ambient · Cinematic"
+            data-year="2024"
+            role="button"
+            tabindex="0"
+            aria-label="Відкрити: Cinematic Mood Reel"
+          >
+            <img
+              class="video-card__thumb"
+              src="https://img.youtube.com/vi/FzABPOqGEAQ/maxresdefault.jpg"
+              alt="Cinematic Mood Reel preview"
+              loading="lazy"
+            />
+            <div class="video-card__scanlines" aria-hidden="true"></div>
+            <div class="video-card__shimmer" aria-hidden="true"></div>
+            <span class="video-card__num">001</span>
+            <div class="video-card__play" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M6 3.5L16 10L6 16.5V3.5Z" />
+              </svg>
+            </div>
+            <div class="video-card__overlay">
+              <div class="video-card__title">Cinematic Mood Reel</div>
+              <div class="video-card__genre">Ambient · Cinematic</div>
+            </div>
+          </div>
+
+          <!-- 2 — Music promo short -->
+          <div
+            class="video-card reveal"
+            data-vid="J_ub7Etch2U"
+            data-title="Music Promo Short"
+            data-genre="Electronic · Promo"
+            data-year="2024"
+            role="button"
+            tabindex="0"
+            aria-label="Відкрити: Music Promo Short"
+          >
+            <img
+              class="video-card__thumb"
+              src="https://img.youtube.com/vi/J_ub7Etch2U/maxresdefault.jpg"
+              alt="Music Promo Short preview"
+              loading="lazy"
+            />
+            <div class="video-card__scanlines" aria-hidden="true"></div>
+            <div class="video-card__shimmer" aria-hidden="true"></div>
+            <span class="video-card__num">002</span>
+            <div class="video-card__play" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M6 3.5L16 10L6 16.5V3.5Z" />
+              </svg>
+            </div>
+            <div class="video-card__overlay">
+              <div class="video-card__title">Music Promo Short</div>
+              <div class="video-card__genre">Electronic · Promo</div>
+            </div>
+          </div>
+
+          <!-- 3 — Brand cinematic vertical -->
+          <div
+            class="video-card reveal"
+            data-vid="ktvTqknDobU"
+            data-title="Brand Story Film"
+            data-genre="Pop · Brand Video"
+            data-year="2024"
+            role="button"
+            tabindex="0"
+            aria-label="Відкрити: Brand Story Film"
+          >
+            <img
+              class="video-card__thumb"
+              src="https://img.youtube.com/vi/ktvTqknDobU/maxresdefault.jpg"
+              alt="Brand Story Film preview"
+              loading="lazy"
+            />
+            <div class="video-card__scanlines" aria-hidden="true"></div>
+            <div class="video-card__shimmer" aria-hidden="true"></div>
+            <span class="video-card__num">003</span>
+            <div class="video-card__play" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M6 3.5L16 10L6 16.5V3.5Z" />
+              </svg>
+            </div>
+            <div class="video-card__overlay">
+              <div class="video-card__title">Brand Story Film</div>
+              <div class="video-card__genre">Pop · Brand Video</div>
+            </div>
+          </div>
+
+          <!-- 4 — Hip-hop music ad -->
+          <div
+            class="video-card reveal"
+            data-vid="3JWTaaS7LdU"
+            data-title="Hip-Hop Ad Campaign"
+            data-genre="Hip-Hop · Music Ad"
+            data-year="2024"
+            role="button"
+            tabindex="0"
+            aria-label="Відкрити: Hip-Hop Ad Campaign"
+          >
+            <img
+              class="video-card__thumb"
+              src="https://img.youtube.com/vi/3JWTaaS7LdU/maxresdefault.jpg"
+              alt="Hip-Hop Ad Campaign preview"
+              loading="lazy"
+            />
+            <div class="video-card__scanlines" aria-hidden="true"></div>
+            <div class="video-card__shimmer" aria-hidden="true"></div>
+            <span class="video-card__num">004</span>
+            <div class="video-card__play" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M6 3.5L16 10L6 16.5V3.5Z" />
+              </svg>
+            </div>
+            <div class="video-card__overlay">
+              <div class="video-card__title">Hip-Hop Ad Campaign</div>
+              <div class="video-card__genre">Hip-Hop · Music Ad</div>
+            </div>
+          </div>
+
+          <!-- 5 — Energetic product launch -->
+          <div
+            class="video-card reveal"
+            data-vid="CevxZvSJLk8"
+            data-title="Product Launch Reel"
+            data-genre="Trap · Energetic"
+            data-year="2024"
+            role="button"
+            tabindex="0"
+            aria-label="Відкрити: Product Launch Reel"
+          >
+            <img
+              class="video-card__thumb"
+              src="https://img.youtube.com/vi/CevxZvSJLk8/maxresdefault.jpg"
+              alt="Product Launch Reel preview"
+              loading="lazy"
+            />
+            <div class="video-card__scanlines" aria-hidden="true"></div>
+            <div class="video-card__shimmer" aria-hidden="true"></div>
+            <span class="video-card__num">005</span>
+            <div class="video-card__play" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M6 3.5L16 10L6 16.5V3.5Z" />
+              </svg>
+            </div>
+            <div class="video-card__overlay">
+              <div class="video-card__title">Product Launch Reel</div>
+              <div class="video-card__genre">Trap · Energetic</div>
+            </div>
+          </div>
+
+          <!-- 6 — Luxury indie ambient -->
+          <div
+            class="video-card reveal"
+            data-vid="hT_nvWreIhg"
+            data-title="Luxury Brand Film"
+            data-genre="Indie Ambient · Dark"
+            data-year="2024"
+            role="button"
+            tabindex="0"
+            aria-label="Відкрити: Luxury Brand Film"
+          >
+            <img
+              class="video-card__thumb"
+              src="https://img.youtube.com/vi/hT_nvWreIhg/maxresdefault.jpg"
+              alt="Luxury Brand Film preview"
+              loading="lazy"
+            />
+            <div class="video-card__scanlines" aria-hidden="true"></div>
+            <div class="video-card__shimmer" aria-hidden="true"></div>
+            <span class="video-card__num">006</span>
+            <div class="video-card__play" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M6 3.5L16 10L6 16.5V3.5Z" />
+              </svg>
+            </div>
+            <div class="video-card__overlay">
+              <div class="video-card__title">Luxury Brand Film</div>
+              <div class="video-card__genre">Indie Ambient · Dark</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         LIGHTBOX — 9:16
+    =================================================== -->
+      <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Перегляд відео"
+      >
+        <div class="lightbox__inner">
+          <button
+            class="lightbox__close"
+            id="lightboxClose"
+            aria-label="Закрити"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path d="M2 2l10 10M12 2L2 12" />
+            </svg>
+            ESC
+          </button>
+
+          <div class="lightbox__frame" id="lightboxFrame"></div>
+
+          <div class="lightbox__meta">
+            <div>
+              <span class="lightbox__meta-title" id="lightboxTitle">—</span>
+              <span class="lightbox__meta-genre" id="lightboxGenre">—</span>
+            </div>
+            <span class="lightbox__meta-year" id="lightboxYear">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================
+         FEATURED SWIPER
+         ─────────────────────────────────────────────────
+         Кожен слайд описує один проєкт.
+         Легко додати новий слайд — скопіюй .featured-slide блок.
+    =================================================== -->
+      <section
+        class="featured section"
+        id="featured"
+        aria-labelledby="featuredHeading"
+      >
+        <div
+          class="reveal"
+          style="padding: 0 var(--section-px); margin-bottom: 2.5rem"
+        >
+          <div class="section__tag">Вибрані Проєкти</div>
+          <h2 class="section__title" id="featuredHeading">
+            FEATURED <span class="text-cyan">WORKS</span>
+          </h2>
+        </div>
+
+        <div class="swiper swiper-featured">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide featured-slide">
+              <div
+                class="featured-slide__bg"
+                style="background: linear-gradient(135deg, #000510, #001a28)"
+              ></div>
+              <div class="featured-slide__grid" aria-hidden="true"></div>
+              <div class="featured-slide__num" aria-hidden="true">01</div>
+              <div class="featured-slide__content">
+                <div class="featured-slide__tag">E-Commerce · Pop · 2024</div>
+                <h3 class="featured-slide__title">
+                  Fashion Brand&#10;Трек + Кліп
+                </h3>
+                <p class="featured-slide__desc">
+                  Авторський трек у стилі pop + повноцінний кліп у форматі
+                  TikTok для fashion e-commerce бренду. Від брифу до публікації
+                  — 14 днів.
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide featured-slide">
+              <div
+                class="featured-slide__bg"
+                style="background: linear-gradient(135deg, #000810, #00141a)"
+              ></div>
+              <div class="featured-slide__grid" aria-hidden="true"></div>
+              <div class="featured-slide__num" aria-hidden="true">02</div>
+              <div class="featured-slide__content">
+                <div class="featured-slide__tag">Beauty · R&B · 2024</div>
+                <h3 class="featured-slide__title">Beauty Brand&#10;R&B Кліп</h3>
+                <p class="featured-slide__desc">
+                  Оригінальна R&B пісня + кінематографічний кліп для beauty
+                  бренду. Результат: +340% охоплення в Reels.
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide featured-slide">
+              <div
+                class="featured-slide__bg"
+                style="background: linear-gradient(135deg, #050010, #100025)"
+              ></div>
+              <div class="featured-slide__grid" aria-hidden="true"></div>
+              <div class="featured-slide__num" aria-hidden="true">03</div>
+              <div class="featured-slide__content">
+                <div class="featured-slide__tag">Tech · Electronic · 2024</div>
+                <h3 class="featured-slide__title">Startup&#10;Launch Video</h3>
+                <p class="featured-slide__desc">
+                  Electronic трек на замовлення + лонч-кліп для tech стартапу.
+                  Прем'єра зібрала 100K переглядів за 48 годин.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured__controls">
+          <button class="slider-btn" id="sliderPrev" aria-label="Назад">
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path
+                d="M10 3.5L5 8.5L10 13.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div class="slider-progress">
+            <div class="slider-progress__bar">
+              <div
+                class="slider-progress__fill"
+                id="sliderFill"
+                style="width: 33.3%"
+              ></div>
+            </div>
+            <span class="slider-progress__count" id="sliderCount">01 / 03</span>
+          </div>
+
+          <button class="slider-btn" id="sliderNext" aria-label="Вперед">
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path
+                d="M7 3.5L12 8.5L7 13.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         ABOUT
+         ─────────────────────────────────────────────────
+         Щоб замінити фото:
+         <img src="YOUR_PHOTO.jpg" alt="Mmmalyy" />
+    =================================================== -->
+      <section class="about section" id="about" aria-labelledby="aboutHeading">
+        <!-- Photo -->
+        <div class="about__photo-wrap reveal">
+          <div class="about__photo">
+            <!--
+            Публічне фото музиканта/креатора з Unsplash.
+            Заміни src на своє фото коли буде готово.
+          -->
+            <img
+              src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80&auto=format"
+              alt="Mmmalyy — Music Video Creator, Київ"
+              loading="lazy"
+            />
+          </div>
+          <div class="about__photo-frame" aria-hidden="true"></div>
+          <div class="about__badge">KYIV · UA</div>
+        </div>
+
+        <!-- Text -->
+        <div class="about__text reveal">
+          <div class="section__tag">Про Мене</div>
+          <h2 class="section__title" id="aboutHeading">
+            Я — <span class="text-cyan">MMMALYY</span>
+          </h2>
+          <div class="section__line"></div>
+
+          <p class="about__body">
+            Я роблю те, чого <strong>не існує більше ніде</strong> — пишу
+            авторський трек під твою аудиторію і знімаю кліп у форматі TikTok /
+            Reels спеціально для твого бренду.
+          </p>
+          <p class="about__body">
+            <strong>Один виконавець — весь цикл:</strong> написання пісні,
+            запис, кінематографічна зйомка, монтаж, колоргрейдинг. Ти отримуєш
+            готовий продукт без зайвих підрядників.
+          </p>
+          <p class="about__body">
+            Музика пишеться
+            <strong>під музичний смак саме твоїх покупців</strong>, тому кліп не
+            просто виглядає — він продає.
+          </p>
+
+          <div class="about__tags">
+            <span class="about__tag">Авторський Трек</span>
+            <span class="about__tag">TikTok / Reels</span>
+            <span class="about__tag">Кінематографія</span>
+            <span class="about__tag">E-Commerce</span>
+            <span class="about__tag">Під Ключ</span>
+            <span class="about__tag">Київ</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         SERVICES
+    =================================================== -->
+      <section
+        class="services section"
+        id="services"
+        aria-labelledby="servicesHeading"
+      >
+        <div class="reveal">
+          <div class="section__tag">Послуги</div>
+          <h2 class="section__title" id="servicesHeading">
+            ЩО Я <span class="text-cyan">РОБЛЮ</span>
+          </h2>
+          <div class="section__line"></div>
+        </div>
+
+        <div class="services__grid">
+          <div class="service-card reveal">
+            <div class="service-card__glow" aria-hidden="true"></div>
+            <div class="service-card__num">01</div>
+            <div class="service-card__icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="10" stroke="#00d4ff" />
+                <path d="M8 7l7 4-7 4V7z" fill="#00d4ff" />
+              </svg>
+            </div>
+            <h3>Трек + Кліп</h3>
+            <p>
+              Пишу авторський трек і знімаю кліп під ключ. Один виконавець —
+              весь цикл. Ідеально для TikTok, Reels та YouTube Shorts.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__glow" aria-hidden="true"></div>
+            <div class="service-card__num">02</div>
+            <div class="service-card__icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                aria-hidden="true"
+              >
+                <rect
+                  x="1"
+                  y="5"
+                  width="15"
+                  height="12"
+                  rx="1"
+                  stroke="#00d4ff"
+                />
+                <path d="M16 9l5-3v8l-5-3V9z" stroke="#00d4ff" />
+              </svg>
+            </div>
+            <h3>Promo Reels</h3>
+            <p>
+              Короткий промо-кліп 9:16 з авторським саундтреком. Оптимізовано
+              під алгоритми TikTok та Instagram Reels.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__glow" aria-hidden="true"></div>
+            <div class="service-card__num">03</div>
+            <div class="service-card__icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                aria-hidden="true"
+              >
+                <rect
+                  x="1"
+                  y="4"
+                  width="20"
+                  height="14"
+                  rx="1"
+                  stroke="#00d4ff"
+                />
+                <path
+                  d="M1 8h20M6 4v4M16 4v4M6 14v4M16 14v4"
+                  stroke="#00d4ff"
+                />
+              </svg>
+            </div>
+            <h3>Brand Film</h3>
+            <p>
+              Кінематографічний брендовий фільм для сайту та презентацій.
+              Розповідає історію бренду мовою кіно та музики.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__glow" aria-hidden="true"></div>
+            <div class="service-card__num">04</div>
+            <div class="service-card__icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M11 2C11 2 18 5 18 12L15 15H7L4 12C4 5 11 2 11 2Z"
+                  stroke="#00d4ff"
+                />
+                <path
+                  d="M8 15L6 20M14 15L16 20"
+                  stroke="#00d4ff"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h3>Product Launch</h3>
+            <p>
+              Лонч-відео для запуску нового продукту. Оригінальний трек +
+              монтаж, що гарантовано виділяє серед конкурентів.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__glow" aria-hidden="true"></div>
+            <div class="service-card__num">05</div>
+            <div class="service-card__icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2 16l5-6 4 4 4-7 5 7"
+                  stroke="#00d4ff"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h3>E-Commerce Ads</h3>
+            <p>
+              Серія TikTok-кліпів для e-commerce. Кожен трек написаний під
+              музичний смак конкретної цільової аудиторії.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__glow" aria-hidden="true"></div>
+            <div class="service-card__num">06</div>
+            <div class="service-card__icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="3" stroke="#00d4ff" />
+                <path
+                  d="M11 2v3M11 17v3M2 11h3M17 11h3
+                       M4.5 4.5l2 2M15.5 15.5l2 2
+                       M4.5 17.5l2-2M15.5 6.5l2-2"
+                  stroke="#00d4ff"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h3>Повний Цикл</h3>
+            <p>
+              Бриф → трек → зйомка → монтаж → готовий файл. Всі формати в
+              комплекті: 9:16, 16:9, 1:1. Права — твої.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         CLIENTS MARQUEE
+    =================================================== -->
+      <div class="clients" aria-label="Клієнти та бренди">
+        <p class="clients__label">Бренди, що обирають унікальний трек + кліп</p>
+        <div class="clients__track-wrap">
+          <!-- Дублюємо список для безперервної анімації -->
+          <div class="clients__track" aria-hidden="true">
+            <span class="clients__logo">FASHION UA</span>
+            <span class="clients__logo">BEAUTY CO</span>
+            <span class="clients__logo">TECH BRAND</span>
+            <span class="clients__logo">FOOD STUDIO</span>
+            <span class="clients__logo">FIT APP</span>
+            <span class="clients__logo">LUXE KYIV</span>
+            <span class="clients__logo">STORE UA</span>
+            <span class="clients__logo">NOVA BRAND</span>
+            <!-- duplicate -->
+            <span class="clients__logo">FASHION UA</span>
+            <span class="clients__logo">BEAUTY CO</span>
+            <span class="clients__logo">TECH BRAND</span>
+            <span class="clients__logo">FOOD STUDIO</span>
+            <span class="clients__logo">FIT APP</span>
+            <span class="clients__logo">LUXE KYIV</span>
+            <span class="clients__logo">STORE UA</span>
+            <span class="clients__logo">NOVA BRAND</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================
+         TESTIMONIALS
+    =================================================== -->
+      <section
+        class="testimonials section"
+        id="testimonials"
+        aria-labelledby="testimonialsHeading"
+      >
+        <div class="reveal">
+          <div class="section__tag">Відгуки</div>
+          <h2 class="section__title" id="testimonialsHeading">
+            ЩО КАЖУТЬ <span class="text-cyan">КЛІЄНТИ</span>
+          </h2>
+          <div class="section__line"></div>
+        </div>
+
+        <div class="testimonials__grid">
+          <div class="testimonial-card reveal">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">
+              Трек написаний точно під мою аудиторію — молоді дівчата від 18 до
+              25. Кліп у TikTok зібрав 2М органіки за тиждень. Продажі виросли
+              вдвічі.
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">А</div>
+              <div>
+                <span class="testimonial-card__name">Аліна К.</span>
+                <span class="testimonial-card__role"
+                  >Fashion E-Commerce · Київ</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">
+              Я думав це просто відеограф. Виявилось — ще й музикант. Трек
+              такий, що команда слухає його на роботі. Лонч-кліп взяли інвестори
+              у презентацію.
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">М</div>
+              <div>
+                <span class="testimonial-card__name">Максим Д.</span>
+                <span class="testimonial-card__role">Tech Startup · Київ</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">
+              Унікальне поєднання — трек + кліп під ключ. 500К переглядів
+              органіки. Конкуренти питають яке агентство робило. Це один хлопець
+              із Києва.
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">О</div>
+              <div>
+                <span class="testimonial-card__name">Олена В.</span>
+                <span class="testimonial-card__role"
+                  >Beauty Brand · Україна</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         PROCESS
+    =================================================== -->
+      <section
+        class="process section"
+        id="process"
+        aria-labelledby="processHeading"
+      >
+        <div class="reveal">
+          <div class="section__tag">Процес</div>
+          <h2 class="section__title" id="processHeading">
+            ЯК ЦЕ <span class="text-cyan">ПРАЦЮЄ</span>
+          </h2>
+          <div class="section__line"></div>
+        </div>
+
+        <div>
+          <div class="process__step reveal">
+            <div class="process__num">01</div>
+            <div class="process__content">
+              <h3>Бриф та Аналіз</h3>
+              <p>
+                Розповідаєш про бренд і аудиторію. Аналізую що слухають твої
+                покупці. Визначаємо жанр, mood і ключовий меседж треку.
+              </p>
+            </div>
+            <div class="process__duration">День 1–2</div>
+          </div>
+
+          <div class="process__step reveal">
+            <div class="process__num">02</div>
+            <div class="process__content">
+              <h3>Трек та Концепція Кліпу</h3>
+              <p>
+                Пишу та записую авторський трек. Паралельно розробляю сценарій
+                кліпу. Надсилаю preview — затверджуємо або коригуємо.
+              </p>
+            </div>
+            <div class="process__duration">День 2–5</div>
+          </div>
+
+          <div class="process__step reveal">
+            <div class="process__num">03</div>
+            <div class="process__content">
+              <h3>Зйомка</h3>
+              <p>
+                Кінематографічна зйомка у форматі 9:16. Режисура, локації,
+                освітлення — все під концепцію треку.
+              </p>
+            </div>
+            <div class="process__duration">День 5–9</div>
+          </div>
+
+          <div class="process__step reveal">
+            <div class="process__num">04</div>
+            <div class="process__content">
+              <h3>Монтаж та Мастеринг</h3>
+              <p>
+                Монтаж під бій треку, колоргрейдинг, мастеринг аудіо. Отримуєш
+                preview — фінальні правки.
+              </p>
+            </div>
+            <div class="process__duration">День 9–13</div>
+          </div>
+
+          <div class="process__step reveal">
+            <div class="process__num">05</div>
+            <div class="process__content">
+              <h3>Здача</h3>
+              <p>
+                Фінальний кліп у всіх форматах: 9:16 TikTok/Reels, 16:9 YouTube,
+                1:1 Instagram. Трек окремим аудіофайлом. Всі права — твої.
+              </p>
+            </div>
+            <div class="process__duration">День 14</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         FAQ
+    =================================================== -->
+      <section class="faq section" id="faq" aria-labelledby="faqHeading">
+        <div class="reveal">
+          <div class="section__tag">FAQ</div>
+          <h2 class="section__title" id="faqHeading">
+            ЧАСТІ <span class="text-cyan">ПИТАННЯ</span>
+          </h2>
+          <div class="section__line"></div>
+        </div>
+
+        <div class="faq__grid">
+          <div
+            class="faq__item reveal"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+          >
+            <div class="faq__question">
+              <h3>Скільки коштує трек + кліп?</h3>
+              <div class="faq__toggle">+</div>
+            </div>
+            <div class="faq__answer">
+              <p>
+                Кожен проєкт індивідуальний. Вартість залежить від жанру,
+                складності зйомки та обсягу матеріалу. Напишіть — розрахую
+                протягом 24 годин.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="faq__item reveal"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+          >
+            <div class="faq__question">
+              <h3>Скільки часу займає весь процес?</h3>
+              <div class="faq__toggle">+</div>
+            </div>
+            <div class="faq__answer">
+              <p>
+                Стандарт — 14 робочих днів від підписання угоди до фінального
+                файлу. Є термінові строки — обговорюємо індивідуально.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="faq__item reveal"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+          >
+            <div class="faq__question">
+              <h3>Кому належать права на трек і кліп?</h3>
+              <div class="faq__toggle">+</div>
+            </div>
+            <div class="faq__answer">
+              <p>
+                Після оплати всі авторські права на музику і відео повністю
+                переходять до вас. Використовуйте на будь-яких платформах без
+                обмежень.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="faq__item reveal"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+          >
+            <div class="faq__question">
+              <h3>Чи можна прослухати трек до зйомки?</h3>
+              <div class="faq__toggle">+</div>
+            </div>
+            <div class="faq__answer">
+              <p>
+                Так. Спочатку надсилаю демо-версію треку на затвердження. Лише
+                після цього починається зйомка. Включено 2 раунди правок.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="faq__item reveal"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+          >
+            <div class="faq__question">
+              <h3>Які формати я отримую?</h3>
+              <div class="faq__toggle">+</div>
+            </div>
+            <div class="faq__answer">
+              <p>
+                9:16 для TikTok/Reels, 16:9 для YouTube/сайту, 1:1 для
+                Instagram. Роздільна здатність 4K або FullHD. Трек — окремим
+                WAV/MP3 файлом.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="faq__item reveal"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+          >
+            <div class="faq__question">
+              <h3>Чи є конкуренти?</h3>
+              <div class="faq__toggle">+</div>
+            </div>
+            <div class="faq__answer">
+              <p>
+                Ні. Поєднання "авторський трек під аудиторію + кліп під ключ" —
+                унікальна послуга, якої немає більше ніде на ринку.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="faq__item reveal"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+          >
+            <div class="faq__question">
+              <h3>Які жанри музики ви пишете?</h3>
+              <div class="faq__toggle">+</div>
+            </div>
+            <div class="faq__answer">
+              <p>
+                Будь-який жанр під смак вашої аудиторії: Pop, R&amp;B, Hip-Hop,
+                Electronic, Ambient, Indie, Commercial. Аналіз аудиторії —
+                перший крок.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="faq__item reveal"
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+          >
+            <div class="faq__question">
+              <h3>Ви знімаєте тільки в Києві?</h3>
+              <div class="faq__toggle">+</div>
+            </div>
+            <div class="faq__answer">
+              <p>
+                Базуюся в Києві, але готовий до виїзних зйомок по Україні та за
+                кордоном. Деякі формати не потребують зйомки взагалі.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         CONTACT
+    =================================================== -->
+      <section
+        class="contact section"
+        id="contact"
+        aria-labelledby="contactHeading"
+      >
+        <div class="contact__grid">
+          <!-- Left — info -->
+          <div class="reveal">
+            <div class="section__tag">Контакт</div>
+            <h2 class="section__title" id="contactHeading">
+              ПОЧНІМО <span class="text-cyan">РОБОТУ</span>
+            </h2>
+            <div class="section__line"></div>
+            <p class="contact__intro">
+              Опиши свій проєкт — і я повернуся з пропозицією протягом 24 годин.
+              Перша консультація безкоштовна.
+            </p>
+
+            <div class="contact__links">
+              <a
+                href="https://www.instagram.com/mmmalyy"
+                target="_blank"
+                rel="noopener"
+                class="contact__link"
+                aria-label="Instagram @mmmalyy"
+              >
+                <div class="contact__link-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#00d4ff"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                    <circle cx="12" cy="12" r="5" />
+                    <circle
+                      cx="17.5"
+                      cy="6.5"
+                      r="1"
+                      fill="#00d4ff"
+                      stroke="none"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <strong>@mmmalyy</strong>
+                  <span>Instagram</span>
+                </div>
+              </a>
+
+              <a
+                href="https://t.me/mmmalyy"
+                target="_blank"
+                rel="noopener"
+                class="contact__link"
+                aria-label="Telegram @mmmalyy"
+              >
+                <div class="contact__link-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#00d4ff"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <strong>@mmmalyy</strong>
+                  <span>Telegram — швидкий зв'язок</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right — form -->
+          <!--
+          Щоб форма надсилала листи — додай action="https://formspree.io/f/YOUR_ID"
+          та method="POST" до тегу <form>
+        -->
+          <form
+            class="contact__form reveal"
+            id="contactForm"
+            novalidate
+            aria-label="Форма замовлення кліпу"
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fieldName">Ваше ім'я *</label>
+                <input
+                  class="form-input"
+                  id="fieldName"
+                  name="name"
+                  type="text"
+                  placeholder="Іван Петренко"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="fieldBrand">Назва бренду</label>
+                <input
+                  class="form-input"
+                  id="fieldBrand"
+                  name="brand"
+                  type="text"
+                  placeholder="Your Brand"
+                  autocomplete="organization"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fieldContact">Telegram / Instagram / Email *</label>
+              <input
+                class="form-input"
+                id="fieldContact"
+                name="contact"
+                type="text"
+                placeholder="@username або email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="fieldService">Тип проєкту</label>
+              <select class="form-input" id="fieldService" name="service">
+                <option value="">Оберіть тип</option>
+                <option>Трек + Кліп (повний пакет)</option>
+                <option>Promo Reels / TikTok</option>
+                <option>Brand Film</option>
+                <option>Product Launch Video</option>
+                <option>E-Commerce Ads серія</option>
+                <option>Інше — обговоримо</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fieldMessage">Про проєкт *</label>
+              <textarea
+                class="form-input"
+                id="fieldMessage"
+                name="message"
+                placeholder="Розкажи про бренд, аудиторію і що хочеш донести через трек і кліп..."
+                required
+                rows="4"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="form-submit" id="submitBtn">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path
+                  d="M13 2L7 8M13 2H8M13 2v5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M7 3H3a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V9"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Надіслати Запит
+            </button>
+
+            <p class="form-note">
+              Відповідь протягом 24 годин · Перша консультація безкоштовна
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <!-- /main -->
+
+    <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer__top">
+        <div>
+          <a href="#hero" class="footer__logo">Mmmal<span>yy</span></a>
+          <p class="footer__desc">
+            Авторський трек + кліп у форматі TikTok / Reels для брендів та
+            e-commerce. Київ, Україна.
+          </p>
+        </div>
+
+        <div class="footer__cols">
+          <div class="footer__col">
+            <h4>Навігація</h4>
+            <ul>
+              <li><a href="#portfolio">Портфоліо</a></li>
+              <li><a href="#services">Послуги</a></li>
+              <li><a href="#about">Про мене</a></li>
+              <li><a href="#process">Процес</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">Контакт</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h4>Послуги</h4>
+            <ul>
+              <li><a href="#services">Трек + Кліп</a></li>
+              <li><a href="#services">Promo Reels</a></li>
+              <li><a href="#services">Brand Films</a></li>
+              <li><a href="#services">Product Launch</a></li>
+              <li><a href="#services">E-Commerce Ads</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          © 2025 Mmmalyy · Music Video Creator · Київ, Україна
+        </p>
+        <div class="footer__socials">
+          <a
+            href="https://www.instagram.com/mmmalyy"
+            target="_blank"
+            rel="noopener"
+            class="footer__social"
+            aria-label="Instagram"
+            >IG</a
+          >
+          <a
+            href="https://t.me/mmmalyy"
+            target="_blank"
+            rel="noopener"
+            class="footer__social"
+            aria-label="Telegram"
+            >TG</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+       JAVASCRIPT
+       ─────────────────────────────────────────────────
+       Кожна функція — в окремому IIFE або чіткому блоці.
+       Легко знайти і змінити будь-яку частину.
+  ===================================================== -->
+    <script>
+      /* ─────────────────────────────────────────
+       1. PAGE LOADER
+    ───────────────────────────────────────── */
+      (function initLoader() {
+        const loader = document.getElementById("loader");
+        const chars = loader.querySelectorAll(".loader-char");
+
+        // Reveal each character with staggered delay
+        chars.forEach(function (char, i) {
+          setTimeout(function () {
+            char.style.transform = "translateY(0)";
+            char.style.opacity = "1";
+          }, 120 + i * 60);
+        });
+
+        // Hide loader after animation completes
+        setTimeout(function () {
+          loader.classList.add("hide");
+          setTimeout(function () {
+            loader.style.display = "none";
+          }, 600);
+        }, 1500);
+      })();
+
+      /* ─────────────────────────────────────────
+       2. CUSTOM CURSOR
+       Only on devices with a real pointer (mouse).
+       Never on touch / mobile.
+    ───────────────────────────────────────── */
+      (function initCursor() {
+        // Check for fine pointer (mouse), not coarse (touch)
+        var hasMouse = window.matchMedia("(pointer: fine)").matches;
+        if (!hasMouse) return; // exit early on touch devices
+
+        var dot = document.getElementById("curDot");
+        var ring = document.getElementById("curRing");
+
+        // Show cursor elements (hidden by default in CSS)
+        dot.style.display = "block";
+        ring.style.display = "block";
+
+        var mouseX = 0,
+          mouseY = 0;
+        var ringX = 0,
+          ringY = 0;
+
+        // Track mouse position
+        document.addEventListener("mousemove", function (e) {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        // Smooth ring follow loop
+        (function animateRing() {
+          ringX += (mouseX - ringX) * 0.14;
+          ringY += (mouseY - ringY) * 0.14;
+
+          dot.style.left = mouseX + "px";
+          dot.style.top = mouseY + "px";
+          ring.style.left = ringX + "px";
+          ring.style.top = ringY + "px";
+
+          requestAnimationFrame(animateRing);
+        })();
+
+        // Hover state on interactive elements
+        var interactives = document.querySelectorAll(
+          'a, button, [role="button"], .video-card, .faq__item, .service-card'
+        );
+        interactives.forEach(function (el) {
+          el.addEventListener("mouseenter", function () {
+            document.body.classList.add("cur-hover");
+          });
+          el.addEventListener("mouseleave", function () {
+            document.body.classList.remove("cur-hover");
+          });
+        });
+      })();
+
+      /* ─────────────────────────────────────────
+       3. NAVBAR — scroll state
+    ───────────────────────────────────────── */
+      (function initNavbar() {
+        var nav = document.getElementById("mainNav");
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            nav.classList.toggle("scrolled", window.scrollY > 50);
+          },
+          { passive: true }
+        );
+      })();
+
+      /* ─────────────────────────────────────────
+       4. MOBILE MENU
+    ───────────────────────────────────────── */
+      var mobileMenu = document.getElementById("mobileMenu");
+      var burgerBtn = document.getElementById("burgerBtn");
+
+      burgerBtn.addEventListener("click", function () {
+        var isOpen = mobileMenu.classList.toggle("open");
+        burgerBtn.classList.toggle("open", isOpen);
+        burgerBtn.setAttribute("aria-expanded", isOpen);
+      });
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("open");
+        burgerBtn.classList.remove("open");
+        burgerBtn.setAttribute("aria-expanded", "false");
+      }
+
+      /* ─────────────────────────────────────────
+       5. SCROLL REVEAL
+       Uses IntersectionObserver to add .visible
+       class when element enters viewport.
+    ───────────────────────────────────────── */
+      (function initScrollReveal() {
+        var elements = document.querySelectorAll(".reveal");
+
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry, index) {
+              if (entry.isIntersecting) {
+                // Stagger delay for siblings
+                setTimeout(function () {
+                  entry.target.classList.add("visible");
+                }, index * 70);
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+        );
+
+        elements.forEach(function (el) {
+          observer.observe(el);
+        });
+      })();
+
+      /* ─────────────────────────────────────────
+       6. GSAP HERO ANIMATION + PARALLAX
+    ───────────────────────────────────────── */
+      window.addEventListener("load", function () {
+        if (typeof gsap === "undefined") return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Cinematic hero entrance (starts after loader)
+        var tl = gsap.timeline({ delay: 1.6 });
+
+        tl.fromTo(
+          "#heroEyebrow",
+          { opacity: 0, x: -22 },
+          { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }
+        )
+
+          .fromTo(
+            "#heroLine1",
+            { opacity: 0, y: 65, skewY: 4 },
+            { opacity: 1, y: 0, skewY: 0, duration: 0.75, ease: "power3.out" },
+            "-=.2"
+          )
+
+          .fromTo(
+            "#heroLine2",
+            { opacity: 0, y: 65, skewY: 4 },
+            { opacity: 1, y: 0, skewY: 0, duration: 0.75, ease: "power3.out" },
+            "-=.55"
+          )
+
+          .fromTo(
+            "#heroLine3",
+            { opacity: 0, y: 65, skewY: 4 },
+            { opacity: 1, y: 0, skewY: 0, duration: 0.75, ease: "power3.out" },
+            "-=.55"
+          )
+
+          .fromTo(
+            "#heroSub",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            "-=.3"
+          )
+
+          .fromTo(
+            "#heroActions",
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            "-=.3"
+          );
+
+        // Parallax grid on scroll
+        gsap.to(".hero__grid", {
+          y: -110,
+          ease: "none",
+          scrollTrigger: { trigger: "#hero", scrub: true },
+        });
+      });
+
+      /* ─────────────────────────────────────────
+       7. SWIPER — Featured slider
+    ───────────────────────────────────────── */
+      window.addEventListener("load", function () {
+        if (typeof Swiper === "undefined") return;
+
+        var totalSlides = 3;
+
+        var swiper = new Swiper(".swiper-featured", {
+          loop: true,
+          autoplay: { delay: 5500, disableOnInteraction: false },
+          speed: 950,
+          effect: "fade",
+          fadeEffect: { crossFade: true },
+          on: {
+            slideChange: function () {
+              var index = (this.realIndex % totalSlides) + 1;
+              var pct = ((index / totalSlides) * 100).toFixed(1) + "%";
+              var label = String(index).padStart(2, "0") + " / 0" + totalSlides;
+
+              document.getElementById("sliderFill").style.width = pct;
+              document.getElementById("sliderCount").textContent = label;
+            },
+          },
+        });
+
+        document
+          .getElementById("sliderPrev")
+          .addEventListener("click", function () {
+            swiper.slidePrev();
+          });
+        document
+          .getElementById("sliderNext")
+          .addEventListener("click", function () {
+            swiper.slideNext();
+          });
+      });
+
+      /* ─────────────────────────────────────────
+       8. PORTFOLIO LIGHTBOX — 9:16
+       Деякі YouTube відео блокують embed.
+       Показуємо fallback з кнопкою "відкрити на YouTube".
+    ───────────────────────────────────────── */
+      (function initLightbox() {
+        var lightbox = document.getElementById("lightbox");
+        var frame = document.getElementById("lightboxFrame");
+        var closeBtn = document.getElementById("lightboxClose");
+
+        // Показати помилку з посиланням на YouTube
+        function showFallback(vid, title) {
+          var ytUrl = "https://www.youtube.com/watch?v=" + vid;
+          frame.innerHTML =
+            '<div style="width:100%;height:100%;display:flex;flex-direction:column;' +
+            "align-items:center;justify-content:center;gap:1.2rem;padding:1.5rem;text-align:center;" +
+            'background:#0a0a14;">' +
+            '<svg width="52" height="52" viewBox="0 0 52 52" fill="none" opacity=".4">' +
+            '<circle cx="26" cy="26" r="25" stroke="#00d4ff"/>' +
+            '<path d="M20 16L38 26L20 36V16Z" fill="#00d4ff"/>' +
+            "</svg>" +
+            '<p style="font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;' +
+            'color:#888899;text-transform:uppercase;">Це відео не підтримує вбудований плеєр</p>' +
+            '<a href="' +
+            ytUrl +
+            '" target="_blank" rel="noopener" ' +
+            'style="font-family:var(--font-mono);font-size:.65rem;letter-spacing:.18em;' +
+            "text-transform:uppercase;color:#000;background:#00d4ff;" +
+            'padding:.7rem 1.4rem;text-decoration:none;display:inline-block;">' +
+            "▶ Відкрити на YouTube" +
+            "</a>" +
+            '<p style="font-family:var(--font-mono);font-size:.5rem;letter-spacing:.12em;' +
+            'color:rgba(136,136,153,.4);text-transform:uppercase;">' +
+            'або замінити на власне відео через data-vid=""' +
+            "</p>" +
+            "</div>";
         }
-    }
-    @media (hover: none) {
-        .custom-cursor {
-            cursor: auto;
-        }
-    }
-</style>
 
-<style>
-    /* Add your other styles as needed */
-</style>
+        // Відкрити лайтбокс
+        function openLightbox(card) {
+          var vid = card.dataset.vid;
+          var title = card.dataset.title || "—";
+          var genre = card.dataset.genre || "—";
+          var year = card.dataset.year || "—";
+
+          document.getElementById("lightboxTitle").textContent = title;
+          document.getElementById("lightboxGenre").textContent = genre;
+          document.getElementById("lightboxYear").textContent = year;
+
+          if (!vid) {
+            showFallback("", title);
+          } else {
+            // Будуємо iframe з усіма потрібними параметрами
+            var iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.allow = "autoplay; fullscreen; picture-in-picture";
+            iframe.allowFullscreen = true;
+            iframe.title = title;
+            console.log("Loading video:", title, "ID:", vid);
+            // Параметри: autoplay, без рекомендацій, без брендингу
+            iframe.src =
+              "https://www.youtube.com/embed/" +
+              vid +
+              "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+
+            // Якщо iframe не завантажився (відео заблоковане) — показуємо fallback
+            iframe.addEventListener("error", function () {
+              showFallback(vid, title);
+            });
+
+            frame.innerHTML = "";
+            frame.appendChild(iframe);
+
+            // Додаткова перевірка через таймаут:
+            // якщо через 4с iframe порожній або заблокований — fallback
+            setTimeout(function () {
+              if (
+                lightbox.classList.contains("open") &&
+                frame.querySelector("iframe")
+              ) {
+                try {
+                  var doc = frame.querySelector("iframe").contentDocument;
+                  // якщо contentDocument недоступний — все ОК (cross-origin = відео грає)
+                } catch (e) {
+                  // cross-origin — це нормально, відео грає
+                }
+              }
+            }, 4000);
+          }
+
+          lightbox.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+
+        // Закрити лайтбокс
+        function closeLightbox() {
+          lightbox.classList.remove("open");
+          document.body.style.overflow = "";
+          setTimeout(function () {
+            frame.innerHTML = "";
+          }, 400);
+        }
+
+        // Прив'язати до відеокарток
+        document.querySelectorAll(".video-card").forEach(function (card) {
+          card.addEventListener("click", function () {
+            openLightbox(card);
+          });
+          card.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") openLightbox(card);
+          });
+        });
+
+        closeBtn.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", function (e) {
+          if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeLightbox();
+        });
+      })();
+
+      /* ─────────────────────────────────────────
+       9. FAQ ACCORDION
+    ───────────────────────────────────────── */
+      (function initFaq() {
+        document.querySelectorAll(".faq__item").forEach(function (item) {
+          var toggle = item.querySelector(".faq__toggle");
+
+          function toggleItem() {
+            var isOpen = item.classList.contains("open");
+
+            // Close all open items first
+            document
+              .querySelectorAll(".faq__item.open")
+              .forEach(function (openItem) {
+                openItem.classList.remove("open");
+                openItem.querySelector(".faq__toggle").textContent = "+";
+                openItem.setAttribute("aria-expanded", "false");
+              });
+
+            // Open clicked item if it was closed
+            if (!isOpen) {
+              item.classList.add("open");
+              toggle.textContent = "−";
+              item.setAttribute("aria-expanded", "true");
+            }
+          }
+
+          item.addEventListener("click", toggleItem);
+          item.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              toggleItem();
+            }
+          });
+        });
+      })();
+
+      /* ─────────────────────────────────────────
+       10. CONTACT FORM
+       Replace action URL with Formspree endpoint
+       to actually send emails.
+    ───────────────────────────────────────── */
+      (function initContactForm() {
+        var form = document.getElementById("contactForm");
+        var submitBtn = document.getElementById("submitBtn");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Visual feedback
+          submitBtn.textContent = "✓ Надіслано!";
+          submitBtn.style.background = "#00ff88";
+
+          // Reset after 3.5s
+          setTimeout(function () {
+            submitBtn.innerHTML =
+              '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' +
+              '<path d="M13 2L7 8M13 2H8M13 2v5" stroke-linecap="round" stroke-linejoin="round"/>' +
+              '<path d="M7 3H3a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V9" stroke-linecap="round"/>' +
+              "</svg> Надіслати Запит";
+            submitBtn.style.background = "";
+          }, 3500);
+
+          /*
+          TODO: Підключи Formspree для реального надсилання:
+          1. Зареєструйся на formspree.io
+          2. Створи форму → отримай ID (напр. xpzgkrqw)
+          3. Додай до <form>:
+             action="https://formspree.io/f/xpzgkrqw"
+             method="POST"
+          4. Видали e.preventDefault() вище
+        */
+        });
+      })();
+
+      /* ─────────────────────────────────────────
+       11. SMOOTH SCROLL for anchor links
+    ───────────────────────────────────────── */
+      (function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            var target = document.querySelector(link.getAttribute("href"));
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
