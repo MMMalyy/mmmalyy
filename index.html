@@ -58,7 +58,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Play&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
@@ -89,8 +89,8 @@
         --white: #f0f0f0;
         --gray: #888899;
 
-        --font-display: "Bebas Neue", sans-serif;
-        --font-body: "DM Sans", sans-serif;
+        --font-display: "Play", sans-serif;
+        --font-body: "Play", sans-serif;
         --font-mono: "Space Mono", monospace;
 
         --section-px: 1.5rem;
@@ -728,16 +728,55 @@
         padding: 0.25rem 0.6rem;
       }
 
-      .portfolio__grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3px;
+      /* Portfolio swiper (uses existing Swiper lib on the page) */
+      .swiper-portfolio {
         margin-top: 1.8rem;
       }
-      @media (min-width: 640px) {
-        .portfolio__grid {
-          grid-template-columns: repeat(3, 1fr);
+
+      /* Ensure swiper can be swiped on touch devices */
+      .swiper-portfolio {
+        touch-action: pan-y;
+      }
+
+      /* Reuse existing controls UI for portfolio */
+      .portfolio__controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.8rem;
+        margin-top: 1.2rem;
+      }
+
+      /* On small screens center controls and make buttons slightly smaller */
+      @media (max-width: 480px) {
+        .portfolio__controls {
+          justify-content: center;
+          gap: 0.6rem;
         }
+        .portfolio__controls .slider-btn {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      /* Make slides a bit narrower */
+      .swiper-portfolio .swiper-slide {
+        width: clamp(200px, 72vw, 320px);
+      }
+      @media (min-width: 640px) {
+        .swiper-portfolio .swiper-slide {
+          width: clamp(220px, 42vw, 280px);
+        }
+      }
+      @media (min-width: 1024px) {
+        .swiper-portfolio .swiper-slide {
+          width: 280px;
+        }
+      }
+
+      /* Optional: small bottom padding so the scrollbar/drag feels comfy */
+      .swiper-portfolio .swiper-wrapper {
+        padding-bottom: 0.5rem;
       }
 
       /* ─── Video card (9:16) ─── */
@@ -2097,18 +2136,9 @@
           </div>
         </div>
 
-        <div class="portfolio__grid">
-          <!--
-          ═══ ВІДЕО КАРТОЧКА ════════════════════════════════
-          data-vid   = YouTube ID (після ?v= або /shorts/)
-          data-title = назва проєкту
-          data-genre = жанр
-          data-year  = рік
-          img src    = YouTube thumbnail або своє фото
-          ═══════════════════════════════════════════════════
-        -->
-
-          <!-- 1 — Cinematic music video (public YouTube) -->
+        <div class="swiper swiper-portfolio">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
           <div
             class="video-card reveal"
             data-vid="FzABPOqGEAQ"
@@ -2138,8 +2168,9 @@
               <div class="video-card__genre">Ambient · Cinematic</div>
             </div>
           </div>
+            </div>
 
-          <!-- 2 — Music promo short -->
+            <div class="swiper-slide">
           <div
             class="video-card reveal"
             data-vid="J_ub7Etch2U"
@@ -2169,8 +2200,9 @@
               <div class="video-card__genre">Electronic · Promo</div>
             </div>
           </div>
+            </div>
 
-          <!-- 3 — Brand cinematic vertical -->
+            <div class="swiper-slide">
           <div
             class="video-card reveal"
             data-vid="ktvTqknDobU"
@@ -2200,8 +2232,10 @@
               <div class="video-card__genre">Pop · Brand Video</div>
             </div>
           </div>
+            </div>
 
           <!-- 4 — Hip-hop music ad -->
+            <div class="swiper-slide">
           <div
             class="video-card reveal"
             data-vid="3JWTaaS7LdU"
@@ -2231,8 +2265,10 @@
               <div class="video-card__genre">Hip-Hop · Music Ad</div>
             </div>
           </div>
+            </div>
 
           <!-- 5 — Energetic product launch -->
+            <div class="swiper-slide">
           <div
             class="video-card reveal"
             data-vid="CevxZvSJLk8"
@@ -2262,8 +2298,10 @@
               <div class="video-card__genre">Trap · Energetic</div>
             </div>
           </div>
+            </div>
 
           <!-- 6 — Luxury indie ambient -->
+            <div class="swiper-slide">
           <div
             class="video-card reveal"
             data-vid="hT_nvWreIhg"
@@ -2293,6 +2331,54 @@
               <div class="video-card__genre">Indie Ambient · Dark</div>
             </div>
           </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio__controls" aria-label="Керування портфоліо">
+          <button
+            class="slider-btn"
+            id="portfolioPrev"
+            aria-label="Назад (портфоліо)"
+          >
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path
+                d="M10 3.5L5 8.5L10 13.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <button
+            class="slider-btn"
+            id="portfolioNext"
+            aria-label="Вперед (портфоліо)"
+          >
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path
+                d="M7 3.5L12 8.5L7 13.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
         </div>
       </section>
 
@@ -2482,7 +2568,7 @@
             Заміни src на своє фото коли буде готово.
           -->
             <img
-              src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80&auto=format"
+              src="public/img/creator-img.jpeg"
               alt="Mmmalyy — Music Video Creator, Київ"
               loading="lazy"
             />
@@ -3552,6 +3638,42 @@
           .getElementById("sliderNext")
           .addEventListener("click", function () {
             swiper.slideNext();
+          });
+      });
+
+      /* ─────────────────────────────────────────
+       7.1 SWIPER — Portfolio slider (МОЇ РОБОТИ)
+    ───────────────────────────────────────── */
+      window.addEventListener("load", function () {
+        if (typeof Swiper === "undefined") return;
+
+        var portfolioEl = document.querySelector(".swiper-portfolio");
+        if (!portfolioEl) return;
+
+        var portfolioSwiper = new Swiper(".swiper-portfolio", {
+          slidesPerView: "auto",
+          spaceBetween: 12,
+          freeMode: true,
+          grabCursor: true,
+          watchOverflow: true,
+          keyboard: { enabled: true },
+          autoplay: { delay: 4200, disableOnInteraction: false },
+          breakpoints: {
+            0: { spaceBetween: 10 },
+            640: { spaceBetween: 12 },
+            1024: { spaceBetween: 14 },
+          },
+        });
+
+        var prevBtn = document.getElementById("portfolioPrev");
+        var nextBtn = document.getElementById("portfolioNext");
+        if (prevBtn)
+          prevBtn.addEventListener("click", function () {
+            portfolioSwiper.slidePrev();
+          });
+        if (nextBtn)
+          nextBtn.addEventListener("click", function () {
+            portfolioSwiper.slideNext();
           });
       });
 
