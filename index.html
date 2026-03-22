@@ -3615,10 +3615,11 @@
             iframe.allow = "autoplay; fullscreen; picture-in-picture";
             iframe.allowFullscreen = true;
             iframe.title = title;
-
+            console.log("Loading video:", title, "ID:", vid);
             // Параметри: autoplay, без рекомендацій, без брендингу
             iframe.src =
-              "https://www.youtube.com/embed/s600FYgI5-s?si=fDN6Y8STzP7a-wI8" +
+              "https://www.youtube.com/embed/" +
+              vid +
               "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
 
             // Якщо iframe не завантажився (відео заблоковане) — показуємо fallback
